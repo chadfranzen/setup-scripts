@@ -25,6 +25,7 @@ read -p "Press [Enter] key after this..."
 
 echo "Git config"
 echo "Setting git email to chadfranzen95@gmail.com"
+echo "You can change this via 'git config --global user.email <email>'"
 
 git config --global user.name "Chad Franzen"
 git config --global user.email chadfranzen95@gmail.com
@@ -43,7 +44,7 @@ brew cleanup
 
 echo "Copying .vimrc and .tmux.conf from Github"
 cd ~
-git clone git@github.com:bradp/dotfiles.git .dotfiles
+git clone git@github.com:chadfranzen/dotfiles.git .dotfiles
 cd .dotfiles
 mv .vimrc ~/.vimrc
 mv .tmux.conf ~/.tmux.conf
