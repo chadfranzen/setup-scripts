@@ -38,16 +38,23 @@ brew install node
 brew install gh
 brew install python3
 brew install tmux
+echo "Installing iterm2 and some plugins..."
+brew install --cask iterm2
+brew install starship
+echo "Installing Fira fonts..."
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code font-fira-mono font-fira-mono-for-powerline font-fira-sans
 
 echo "Cleaning up brew"
 brew cleanup
 
-echo "Copying .vimrc and .tmux.conf from Github"
+echo "Copying .vimrc, .tmux.conf, and .zshrc from Github"
 cd ~
 git clone git@github.com:chadfranzen/dotfiles.git .dotfiles
 cd .dotfiles
 mv .vimrc ~/.vimrc
 mv .tmux.conf ~/.tmux.conf
+echo "Not copying .zshrc. Run zshsetup.sh after this to copy that."
 
 cd ~
 rm -rf .dotfiles
@@ -59,3 +66,5 @@ killall Finder
 
 
 echo "Done!"
+echo "Next, you should go over to iterm2 and install oh-my-zsh via the following:"
+echo "sh -c \"\$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
