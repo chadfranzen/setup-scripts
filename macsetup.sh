@@ -15,6 +15,9 @@ brew update
 echo "Installing Git..."
 brew install git
 
+echo "Installing nvm (NOTE: Requires running zshrcsetup.sh to work properly)"
+brew install nvm
+
 echo "Creating an SSH key..."
 ssh-keygen -t rsa
 
