@@ -78,7 +78,8 @@ fi
 read -p "${red}${bold}Enter the name you want to use for Github (typically first + last name, ENTER to skip): ${reset}" githubuser
 if [ ! -z "$githubuser" ]; then
   echo "${yellow}Setting username${reset}"
-  git config --global user.name $githubuser
+  git config --global --unset-all user.name
+  git config --global user.name "$githubuser"
 else
   echo "${cyan}Skipping${reset}"
 fi
@@ -86,7 +87,8 @@ fi
 read -p "${red}${bold}Enter your Github email (ENTER to skip): ${reset}" githubemail
 if [ ! -z "$githubemail" ]; then
   echo "${yellow}Setting email${reset}"
-  git config --global user.email $githubemail
+  git config --global --unset-all user.email
+  git config --global user.email "$githubemail"
 else
   echo "${cyan}Skipping${reset}"
 fi
