@@ -53,6 +53,10 @@ echo "${bold}==== Homebrew =============${reset}"
 if test ! $(which brew); then
   echo "${yellow}Installing homebrew...${reset}"
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  echo "${yellow}Writing to .zprofile...${reset}"
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+  echo "${green}Done. NOTE: You may need to refresh your terminal before you can use brew${reset}"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 else
   echo "${cyan}Homebrew is already installed.${reset}"
 fi
@@ -109,6 +113,7 @@ brew_install "tmux"
 brew_install "pyenv"
 brew_install "yarn"
 brew_install "nvm"
+brew_install "svn"
 
 echo ""
 
@@ -118,10 +123,7 @@ cask_install "iterm2" "iTerm"
 cask_install "google-chrome" "Google Chrome"
 cask_install "firefox" "Firefox"
 cask_install "zoom" "zoom.us"
-cask_install "slack" "Slack"
 cask_install "visual-studio-code" "Visual Studio Code"
-cask_install "pycharm" "PyCharm"
-cask_install "tableplus" "TablePlus"
 cask_install "rectangle" "Rectangle"
 cask_install "macvim" "MacVim"
 
@@ -141,6 +143,10 @@ while true; do
       cd .dotfiles
       mv .vimrc ~/.vimrc
       mv .tmux.conf ~/.tmux.conf
+      echo "${yellow}Making sure Vim plugin manager is available...${reset}"
+      mkdir -p ~/.vim/autoload ~/.vim/bundle
+      curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
       echo "${green}Done. If you want a .zshrc as well, run zshsetup.sh after this.${reset}"
       break
       ;;
